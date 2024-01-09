@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('%cwait, get out of here, it\'s a MESS!', 'color: green; font-weight: bold; font-size: 48px;');
+    console.info('if you\'re in here, you\'re learning exactly how to NOT build a webpage.');
+    console.info('don\'t ask me why, but resizing your browser breaks the format until you refresh... maybe i should have organized rows and columns after all, huh?');
     const changeModeButton = document.getElementById('changeMode');
     const modeDisplay = document.getElementById('modeDisplay');
     const bpmDisplay = document.getElementById('bpmDisplay');
