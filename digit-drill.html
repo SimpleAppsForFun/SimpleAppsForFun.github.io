@@ -6,16 +6,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="content">
+    <header>
         <button id="changeMode">Change Mode</button>
         <span id="modeDisplay">Mode: Basic</span>
         <span id="bpmDisplay">BPM: 60</span>
-        <div id="displayArea">
-            <div id="leftNumber"></div>
-            <div id="rightNumber"></div>
-        </div>
-        <p id="tip">Tip: To increase or decrease the BPM, use your scroll wheel or arrow keys up and down.</p>
+    </header>
+    <div class="main-display">
+        <div id="leftNumber" class="number"></div>
+        <div id="rightNumber" class="number"></div>
     </div>
+    <footer>
+        <p id="tip">Tip: To increase or decrease the BPM, use your scroll wheel or arrow keys up and down.</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
