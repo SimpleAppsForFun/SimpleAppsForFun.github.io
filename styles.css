@@ -7,13 +7,17 @@ body, html {
     font-family: 'Arial', sans-serif;
 }
 
-header, footer {
+header {
     text-align: center;
-    padding: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #555;
+    background-color: #222; /* A slight visual separation for the header */
 }
 
-header {
-    border-bottom: 1px solid #555;
+header > * {
+    margin: 0 15px; /* 30px space between each item */
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .main-display {
@@ -29,18 +33,25 @@ header {
 }
 
 #changeMode {
-    padding: 10px;
-    margin-right: 20px;
+    padding: 10px 20px; /* Larger click area */
+    cursor: pointer; /* To indicate it's clickable */
 }
 
 #mode, #bpmDisplay {
-    padding: 10px;
-    margin-right: 10px;
+    padding: 10px 20px;
     background: #444;
     border-radius: 5px;
+    min-width: 100px; /* Prevents jumping when the text changes */
+    text-align: center; /* Center text when the width extends */
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
 }
 
 #tip {
     font-size: 0.8em;
     color: #aaa;
+    margin-top: 20px; /* Space between the header and the tip */
 }
