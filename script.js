@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const changeModeButton = document.getElementById('changeMode');
-    const modeDisplay = document.getElementById('mode');
+    const modeDisplay = document.getElementById('modeDisplay');
     const bpmDisplay = document.getElementById('bpmDisplay');
     const leftNumberDisplay = document.getElementById('leftNumber');
     const rightNumberDisplay = document.getElementById('rightNumber');
-    const tip = document.getElementById('tip');
+    
 
     let mode = 'Basic';
     let bpm = 60;
@@ -16,9 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function changeMode() {
         const currentModeIndex = modes.indexOf(mode);
         mode = modes[(currentModeIndex + 1) % modes.length];
-        modeDisplay.textContent = `Mode: ${mode}`;
+        modeDisplay.textContent = `Mode: ${mode}`; // This line should update the display
         updateDisplay();
     }
+    
 
     function generateUniqueNumber(hand) {
         let newNumber;
@@ -30,65 +31,79 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateDisplay() {
-        leftNumberDisplay.style.visibility = 'hidden';
-        rightNumberDisplay.style.visibility = 'hidden';
-        leftNumberDisplay.style.color = 'blue';
-        rightNumberDisplay.style.color = 'red';
-
+        const table = document.getElementById('modeTable');
+        const leftLetter = table.getElementsByClassName('letter left')[0];
+        const rightLetter = table.getElementsByClassName('letter right')[0];
+        const leftNumber = table.getElementsByClassName('number left')[0];
+        const rightNumber = table.getElementsByClassName('number right')[0];
+    
+        // Clear the previous mode's displays
+        leftLetter.textContent = '';
+        leftNumber.textContent = '';
+        rightLetter.textContent = '';
+        rightNumber.textContent = '';
+        rightNumberDisplay.textContent = ''; // Clear the right number display for non-Basic modes
+    
+        // Only display the table if not in Basic mode
+        table.style.display = mode === 'Basic' ? 'none' : '';
+    
+        // Handle each mode
         if (mode === 'Basic') {
+            // Show only one number for Basic mode
             const number = generateUniqueNumber('R');
             rightNumberDisplay.textContent = number;
-            rightNumberDisplay.style.visibility = 'visible';
-            leftNumberDisplay.textContent = '';
+            rightNumberDisplay.className = 'basic-number';
+            // Hide the table since Basic mode does not use it
+            table.style.display = 'none';
         } else if (mode === 'Moderate') {
-            const hand = Math.random() < 0.5 ? 'L' : 'R';
-            const number = generateUniqueNumber(hand);
+            // Show one set (L or R) at a time for Moderate mode
+            let hand = Math.random() < 0.5 ? 'L' : 'R';
             if (hand === 'L') {
-                leftNumberDisplay.textContent = `L\n${number}`;
-                leftNumberDisplay.style.visibility = 'visible';
-                rightNumberDisplay.textContent = '';
+                leftLetter.textContent = 'L';
+                leftNumber.textContent = generateUniqueNumber('L');
             } else {
-                rightNumberDisplay.textContent = `R\n${number}`;
-                rightNumberDisplay.style.visibility = 'visible';
-                leftNumberDisplay.textContent = '';
+                rightLetter.textContent = 'R';
+                rightNumber.textContent = generateUniqueNumber('R');
             }
-        } else {
-            leftNumberDisplay.textContent = `L\n${generateUniqueNumber('L')}`;
-            rightNumberDisplay.textContent = `R\n${generateUniqueNumber('R')}`;
-            leftNumberDisplay.style.visibility = 'visible';
-            rightNumberDisplay.style.visibility = 'visible';
+        } else if (mode === 'Advanced') {
+            // Show both sets (L and R) for Advanced mode
+            leftLetter.textContent = 'L';
+            leftNumber.textContent = generateUniqueNumber('L');
+            rightLetter.textContent = 'R';
+            rightNumber.textContent = generateUniqueNumber('R');
         }
+    }
+
+    changeModeButton.addEventListener('click', changeMode);
+    window.addEventListener('wheel', adjustBpm);
+    window.addEventListener('keydown', adjustBpm);
+    window.addEventListener('resize', centerNumbers);
+
+    startInterval();
+
+    function adjustBpm(event) {
+        if (event.deltaY < 0 || event.key === 'ArrowUp') {
+            bpm = Math.min(bpm + 1, 300);
+        } else if (event.deltaY > 0 || event.key === 'ArrowDown') {
+            bpm = Math.max(bpm - 1, 20);
+        }
+        bpmDisplay.textContent = `BPM: ${bpm}`;
+        startInterval();
+    }
+
+    function centerNumbers() {
+        const displays = document.querySelectorAll('.letter-number, .basic-number');
+        displays.forEach(display => {
+            display.style.display = 'flex';
+            display.style.flexDirection = 'column';
+            display.style.alignItems = 'center';
+            display.style.justifyContent = 'center';
+            display.style.height = '100vh';
+        });
     }
 
     function startInterval() {
         if (intervalId) clearInterval(intervalId);
         intervalId = setInterval(updateDisplay, 60000 / bpm);
     }
-
-    // Listen to clicks for the Change Mode button
-    changeModeButton.addEventListener('click', () => {
-        changeMode();
-    });
-
-    // Listen for scroll and key events to adjust BPM
-    window.addEventListener('wheel', (e) => {
-        if (e.deltaY < 0) bpm += 1;
-        else if (e.deltaY > 0) bpm -= 1;
-
-        bpm = Math.max(20, Math.min(bpm, 300));
-        bpmDisplay.textContent = `BPM: ${bpm}`;
-        startInterval();
-    });
-
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowUp') bpm += 1;
-        else if (e.key === 'ArrowDown') bpm -= 1;
-
-        bpm = Math.max(20, Math.min(bpm, 300));
-        bpmDisplay.textContent = `BPM: ${bpm}`;
-        startInterval();
-    });
-
-    // Initialize the display
-    startInterval();
 });

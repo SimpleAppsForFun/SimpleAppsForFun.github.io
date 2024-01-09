@@ -11,13 +11,31 @@
         <button id="changeMode">Change Mode</button>
         <span id="modeDisplay">Mode: Basic</span>
     </div>
+    <div id="displayArea" class="main-display">
+        <!-- Add a table structure for Moderate and Advanced modes -->
+        <table id="modeTable" class="mode-table" style="display:none;">
+            <tr>
+                <td class="letter left" style="font-size: 100px;"></td>
+                <td class="spacer" style="width: 400px;"></td>
+                <td class="letter right" style="font-size: 100px;"></td>
+            </tr>
+            <tr>
+                <td class="number left" style="font-size: 150px;"></td>
+                <td></td>
+                <td class="number right" style="font-size: 150px;"></td>
+            </tr>
+        </table>
+        <!-- Basic mode uses these divs -->
+        <div id="leftNumber" class="number"></div>
+        <div id="rightNumber" class="number"></div>
+    </div>
     <p id="tip">Tip: To increase or decrease the BPM, use your scroll wheel or arrow keys up and down.</p>
     <div class="main-display">
         <div id="leftNumber" class="number"></div>
         <div id="rightNumber" class="number"></div>
     </div>
     <footer>
-        <p>&copy; 2024 Simple Apps for Fun</p>
+        <p>Made for Clark College MUSC101</p>
     </footer>
     <script src="script.js"></script>
 </body>

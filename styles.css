@@ -4,50 +4,150 @@ body, html {
     background-color: #333;
     color: white;
     font-family: 'Arial', sans-serif;
+    overflow: hidden;
 }
 
 .top-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 0; 
-    border-bottom: 1px solid #555; /* Re-add the white line */
+    padding: 10px 0;
+    border-bottom: 1px solid #555;
 }
 
 #changeMode {
     padding: 10px 20px;
     margin: 0 30px;
     cursor: pointer;
-    background: #444; /* Assuming you want the button to have this background */
-    border: none; /* Remove border if present */
-    color: white; /* Text color */
-    border-radius: 5px; /* Rounded corners */
+    background: #444;
+    border: none;
+    color: white;
+    border-radius: 5px;
 }
 
 #modeDisplay, #bpmDisplay {
     padding: 10px 20px;
     margin: 0 30px;
     background: none;
-    border: none; /* Remove border if present */
+    border: none;
 }
 
 #tip {
     text-align: center;
     font-size: 0.8em;
     color: #aaa;
-    padding: 20px 0; /* Added padding for space between line and tip */
+    padding: 20px 0;
+    position: absolute;
+    top: 80px; 
+    width: 100%;
 }
 
 .main-display {
+    text-align: center;
+    height: calc(100vh - 100px); 
     display: flex;
+    flex-direction: column;
     justify-content: center;
+}
+
+.number, .letter {
+    margin: 0 auto; 
+}
+
+.left .letter, .left .number {
+    color: #add8e6; 
+}
+
+.right .letter, .right .number {
+    color: #f08080; 
+}
+
+.letter-number {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-grow: 1;
+    justify-content: center;
+    margin: 0 auto; 
 }
 
 .number {
-    font-size: 5em;
-    margin: 0 20px;
+    font-size: 125px; 
+    margin: 0 50px; 
+}
+
+.moderate .left, .moderate .right {
+    display: inline-block; 
+    margin: 0 200px; 
+}
+
+.advanced .left, .advanced .right {
+    display: inline-flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 0 200px; 
+}
+
+.mode-table {
+    border-collapse: collapse;
+    margin: 0 auto; 
+}
+
+.mode-table .letter {
+    color: #add8e6; 
+}
+
+.mode-table .number {
+    color: #f08080; 
+}
+
+.mode-table .spacer {
+    width: 400px; 
+}
+
+.left, .right {
+    margin: 0 225px; 
+}
+
+.letter {
+    font-size: 100px;
+    margin-bottom: 20px; 
+    color: #add8e6; 
+}
+
+.number {
+    font-size: 150px;
+    color: #f08080; 
+}
+
+.basic-number {
+    color: white;
+    font-size: 150px;
+    margin: 0; 
+}
+
+.main-display.basic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+#displayArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 50vh; 
 }
 
 footer {
@@ -55,6 +155,7 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
-    padding: 20px 0;
-    background: #222;
+    padding: 10px 0;
+    background-color: #222;
+    border-top: 1px solid #555;
 }
