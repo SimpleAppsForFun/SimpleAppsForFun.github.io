@@ -30,23 +30,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateDisplay() {
+        leftNumberDisplay.style.visibility = 'hidden';
+        rightNumberDisplay.style.visibility = 'hidden';
+        leftNumberDisplay.style.color = 'blue';
+        rightNumberDisplay.style.color = 'red';
+
         if (mode === 'Basic') {
             const number = generateUniqueNumber('R');
             rightNumberDisplay.textContent = number;
+            rightNumberDisplay.style.visibility = 'visible';
             leftNumberDisplay.textContent = '';
         } else if (mode === 'Moderate') {
             const hand = Math.random() < 0.5 ? 'L' : 'R';
             const number = generateUniqueNumber(hand);
             if (hand === 'L') {
-                leftNumberDisplay.textContent = number;
+                leftNumberDisplay.textContent = `L\n${number}`;
+                leftNumberDisplay.style.visibility = 'visible';
                 rightNumberDisplay.textContent = '';
             } else {
-                rightNumberDisplay.textContent = number;
+                rightNumberDisplay.textContent = `R\n${number}`;
+                rightNumberDisplay.style.visibility = 'visible';
                 leftNumberDisplay.textContent = '';
             }
         } else {
-            leftNumberDisplay.textContent = generateUniqueNumber('L');
-            rightNumberDisplay.textContent = generateUniqueNumber('R');
+            leftNumberDisplay.textContent = `L\n${generateUniqueNumber('L')}`;
+            rightNumberDisplay.textContent = `R\n${generateUniqueNumber('R')}`;
+            leftNumberDisplay.style.visibility = 'visible';
+            rightNumberDisplay.style.visibility = 'visible';
         }
     }
 
