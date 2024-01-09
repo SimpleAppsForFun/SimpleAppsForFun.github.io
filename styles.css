@@ -1,16 +1,41 @@
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
     background-color: #333;
     color: white;
     font-family: 'Arial', sans-serif;
 }
 
-header {
+.top-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0; /* 10px padding to the top */
+    border-bottom: 1px solid #555; /* Re-add the white line */
+}
+
+#changeMode {
+    padding: 10px 20px;
+    margin: 0 30px;
+    cursor: pointer;
+    background: #444; /* Assuming you want the button to have this background */
+    border: none; /* Remove border if present */
+    color: white; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+}
+
+#modeDisplay, #bpmDisplay {
+    padding: 10px 20px;
+    margin: 0 30px;
+    background: none;
+    border: none; /* Remove border if present */
+}
+
+#tip {
     text-align: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #555;
+    font-size: 0.8em;
+    color: #aaa;
+    padding: 20px 0; /* Added padding for space between line and tip */
 }
 
 .main-display {
@@ -23,32 +48,6 @@ header {
 .number {
     font-size: 5em;
     margin: 0 20px;
-}
-
-.top-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 20px; /* Added padding below the top controls */
-}
-
-#changeMode {
-    padding: 10px 20px;
-    margin: 0 30px;
-    cursor: pointer;
-}
-
-#modeDisplay, #bpmDisplay {
-    padding: 10px 20px;
-    margin: 0 30px;
-    background: none;
-}
-
-#tip {
-    text-align: center;
-    font-size: 0.8em;
-    color: #aaa;
-    margin: 20px 0;
 }
 
 footer {
